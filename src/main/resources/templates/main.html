@@ -4,40 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-  <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <header class="header">
     <nav>
-
-            <div class="header_logo">
-                <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
-            </div>
-
-            <div id="headerBars" class="header_bars">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-
+        <div class="header_logo">
+            <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
+        </div>
         <div class="header_menu">
-            <a href="#">Menu</a>
-            <a href="#">About us</a>
-            <a href="#">Shop</a>
+            <a href="/main">Shop</a>
+            <a href="#">About us</a><
             <a href="#">Contact</a>
         </div>
+        <div id="headerBars">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
     </nav>
 </header>
 
-<th:block th:each="cake:${cakes}">
-<div>
-    <p th:text="${cake.name}"></p>
-    <p th:text="${cake.flavor}"></p>
-    <p th:text="${cake.price}"></p>
-    <p th:text="${cake.pieces}"></p>
-</div>
-</th:block>
+<section>
+    <div id="section">
+        <th:block th:each="cake:${cakes}">
+            <div class="item">
+                <h2 class="title">
+                    <p th:text="${cake.name}"></p>
+                </h2>
+                <div class="img_container">
+                <img class="cake_img" th:src="${cake.link}">
+                </div>
+                <div class="info">
+                    <p th:text="${cake.price}"></p>
+                    <p th:text="${cake.pieces}"></p>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</section>
 </body>
 </html>

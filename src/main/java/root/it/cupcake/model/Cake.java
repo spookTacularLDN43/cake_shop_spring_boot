@@ -1,18 +1,22 @@
 package root.it.cupcake.model;
 
+import ij.ImagePlus;
+
 public class Cake {
     private String name;
     private String flavor;
     private int price;
     private Type type;
     private int pieces;
+    private String link;
 
-    public Cake(String name, String flavor, int price, Type type, int pieces) {
+    public Cake(String name, String flavor, int price, Type type, int pieces, String link) {
         this.name = name;
         this.flavor = flavor;
         this.price = price;
         this.type = type;
         this.pieces = pieces;
+        this.link = link;
     }
 
     public String getName() {
@@ -53,6 +57,14 @@ public class Cake {
 
     public void setPieces(int pieces) {
         this.pieces = pieces;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public enum Type {
