@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+
+<header class="header">
+    <nav>
+
+            <div class="header_logo">
+                <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
+            </div>
+
+            <div id="headerBars" class="header_bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+
+        <div class="header_menu">
+            <a href="#">Menu</a>
+            <a href="#">About us</a>
+            <a href="#">Shop</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+</header>
+
+<th:block th:each="cake:${cakes}">
+<div>
+    <p th:text="${cake.name}"></p>
+    <p th:text="${cake.flavor}"></p>
+    <p th:text="${cake.price}"></p>
+    <p th:text="${cake.pieces}"></p>
+</div>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+	background-image: url('food-gb896d016f_1920.jpg');
+    background-position: center;
+    background-size: cover;
+	background-repeat: no-repeat;
+}
+nav{
+height: 6rem;
+background: rgba( 0, 0, 0, 0.7);
+display: flex;
+justify-content: space-around;
+align-items: center;
+
+}
+.header_logo{
+max-height: 15rem;
+}
+
+
+@media screen and (max-width: 600px) {
+
+}
