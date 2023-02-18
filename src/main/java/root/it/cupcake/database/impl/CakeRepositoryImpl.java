@@ -1,6 +1,4 @@
 package root.it.cupcake.database.impl;
-
-import ij.IJ;
 import org.springframework.stereotype.Component;
 import root.it.cupcake.database.ICakeRepository;
 import root.it.cupcake.model.Cake;

@@ -41,8 +41,8 @@
                 <img class="cake_img" th:src="${cake.link}">
                 </div>
                 <div class="info">
-                    <p th:text="${cake.price}"></p>
-                    <p th:text="${cake.pieces}"></p>
+                    <p th:text="'Available '+${cake.pieces}+' pcs'"></p>
+                    <p th:text="${cake.price} + ' zl'"></p>
                 </div>
             </div>
         </th:block>

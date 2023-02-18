@@ -17,9 +17,11 @@
             <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
         </div>
         <div class="header_menu">
-            <a href="/main">Shop</a>
-            <a href="#">About us</a><
-            <a href="#">Contact</a>
+            <a th:href="@{/main}">Shop</a>
+            <a th:href="@{/about}">About us</a>
+            <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/login}">Login</a>
+            <a th:href="@{/contact}">Cart</a>
         </div>
         <div id="headerBars">
             <span></span>
@@ -41,8 +43,8 @@
                 <img class="cake_img" th:src="${cake.link}">
                 </div>
                 <div class="info">
-                    <p th:text="${cake.price}"></p>
-                    <p th:text="${cake.pieces}"></p>
+                    <p th:text="'Available '+${cake.pieces}+' pcs'"></p>
+                    <p th:text="${cake.price} + ' $'"></p>
                 </div>
             </div>
         </th:block>
