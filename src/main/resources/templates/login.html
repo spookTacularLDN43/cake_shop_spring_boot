@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel= "stylesheet" type="text/css" href="/mainmenu.css" media="all">
+    <link rel= "stylesheet" type="text/css" href="/login.css" media="all">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <nav>
+        <div class="header_logo">
+            <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
+        </div>
+        <div class="header_menu">
+            <a th:href="@{/main}">Shop</a>
+            <a th:href="@{/about}">About us</a>
+            <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/login}" th:if="${user == null}">Login</a>
+            <a th:href="@{/cart}">Cart</a>
+        </div>
+        <div id="headerBars">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+<div id="form-login">
+<form method="post">
+    <div class="inp"><label>User name: </label><input type="text" th:field="*{user.login}"/></div>
+    <div class="inp"><label>Password: </label><input type="password" th:field="*{user.password}"/></div>
+    <div class="inp"><input type="submit" value="Sign in"></div>
+</form>
+</div>
+</body>
+</html>

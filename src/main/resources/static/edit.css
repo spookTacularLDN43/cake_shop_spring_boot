@@ -1,0 +1,65 @@
+#changeData{
+display: block;
+width: 20vw;
+margin: 6rem auto 0 auto;
+text-align: center;
+color:white;
+font-family: 'Gravitas One', cursive;
+}
+#changePass{
+display: block;
+width: 20vw;
+margin: 4rem auto 0 auto;
+text-align: center;
+color:white;
+font-family: 'Gravitas One', cursive;
+margin-bottom: 3rem;
+}
+#changePass .inp{
+padding: 1rem;
+}
+#changeData .inp{
+padding: 1rem;
+}
+#changeData input {
+margin-top: 1rem;
+padding: 0.5rem;
+font-size: 1rem;
+background: rgba( 0, 0, 0, 0.7);
+border: 1px solid rgb(200, 197, 197);
+border-radius: 10px;
+color: white;
+}
+#changeData input:hover{
+box-shadow: 0 0 10px rgb(200, 197, 197);
+}
+#changeData input[type=submit]{
+color:white;
+margin-top:0;
+}
+#changeData input[type=submit]:hover{
+box-shadow: 0 0 10px rgb(200, 197, 197);
+cursor: pointer;
+}
+
+
+#changePass input {
+margin-top: 1rem;
+padding: 0.5rem;
+font-size: 1rem;
+background: rgba( 0, 0, 0, 0.7);
+border: 1px solid rgb(200, 197, 197);
+border-radius: 10px;
+color: white;
+}
+#changePass input:hover{
+box-shadow: 0 0 10px rgb(200, 197, 197);
+}
+#changePass input[type=submit]{
+color:white;
+margin-top:0;
+}
+#changePass input[type=submit]:hover{
+box-shadow: 0 0 10px rgb(200, 197, 197);
+cursor: pointer;
+}

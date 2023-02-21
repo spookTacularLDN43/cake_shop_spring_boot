@@ -1,0 +1,33 @@
+#form-login{
+display: block;
+width: 20vw;
+margin: 8rem auto 0 auto;
+text-align: center;
+color:white;
+font-family: 'Gravitas One', cursive;
+}
+
+#form-login .inp{
+padding: 1rem;
+
+}
+#form-login input {
+margin-top: 1rem;
+padding: 0.5rem;
+font-size: 1rem;
+background: rgba( 0, 0, 0, 0.7);
+border: 1px solid rgb(200, 197, 197);
+border-radius: 10px;
+color: white;
+}
+#form-login input:hover{
+box-shadow: 0 0 10px rgb(200, 197, 197);
+}
+#form-login input[type=submit]{
+color:white;
+margin-top:0;
+}
+#form-login input[type=submit]:hover{
+box-shadow: 0 0 10px rgb(200, 197, 197);
+cursor: pointer;
+}

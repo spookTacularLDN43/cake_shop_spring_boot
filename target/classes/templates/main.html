@@ -4,27 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
-    <link rel="stylesheet" href="/main.css">
+    <link rel= "stylesheet" type="text/css" href="/main.css" media="all">
+    <link rel= "stylesheet" type="text/css" href="/mainmenu.css" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
 </head>
 <body>
-
 <header class="header">
     <nav>
         <div class="header_logo">
             <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
         </div>
         <div class="header_menu">
-            <a href="/main">Shop</a>
-            <a href="#">About us</a><
-            <a href="#">Contact</a>
+            <a th:href="@{/main}">Shop</a>
+            <a th:href="@{/about}">About us</a>
+            <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/login}" th:if="${user == null}">Login</a>
+            <a th:href="@{/cart}">Cart</a>
+            <a th:href="@{/login/out}" th:if="${user != null}">Log out</a>
+            <a th:href="@{/login/edit}" th:if="${user != null}" th:text="${user.name}"></a>
         </div>
         <div id="headerBars">
             <span></span>
             <span></span>
             <span></span>
+        </div>
+        <div>
+            <form method="post" action="/main" id="search">
+                <input type="text" placeholder="Search..." name="filter">
+                <input type="submit"value="ok">
+            </form>
         </div>
 
     </nav>
@@ -42,7 +52,7 @@
                 </div>
                 <div class="info">
                     <p th:text="'Available '+${cake.pieces}+' pcs'"></p>
-                    <p th:text="${cake.price} + ' zl'"></p>
+                    <p th:text="${cake.price} + ' $'"></p>
                 </div>
             </div>
         </th:block>

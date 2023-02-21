@@ -1,0 +1,73 @@
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body{
+	background-image: url('food-gb896d016f_1920.jpg');
+    background-position: center;
+    background-size: cover;
+	background-repeat: no-repeat;
+	font-family: Arial, Helvetica, sans-serif;
+	min-height: 100vh;
+}
+.header{
+height: 6rem;
+}
+nav{
+height: 6rem;
+background: rgba( 0, 0, 0, 0.7);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0 2rem;
+box-shadow: 0 0 10px rgb(200, 197, 197);
+position: fixed;
+width:100%;
+}
+.header_logo{
+max-height: 15rem;
+}
+
+#headerBars span{
+display: block;
+height: 0.2rem;
+width: 2rem;
+margin: 0.3rem;
+background-color: white;
+}
+.header_menu{
+display:none;
+}
+.header_menu a{
+text-decoration: none;
+color: white;
+font-size: 1.2rem;
+margin: 0 1rem;
+font-family: 'Gravitas One', cursive;
+ }
+a:hover{
+ text-shadow: 0 0 3px rgb(200, 197, 197);
+}
+#search input{
+display: none;
+}
+@media screen and (min-width: 992px) {
+#headerBars span{
+display: none;
+}
+.header_menu{
+display: block;
+}
+
+#search input{
+display: inline-block;
+padding: 0.5rem;
+font-size: 0.7rem;
+background: rgba( 0, 0, 0, 0.7);
+border: 1px solid rgb(200, 197, 197);
+border-radius: 10px;
+color: white;
+}
+}
