@@ -12,8 +12,15 @@ import root.it.cupcake.model.User;
 @Getter
 public class SessionObject {
     private User user = null;
+    private String message = null;
 
-    public boolean isLogged(){
+    public boolean isLogged() {
         return !(this.user == null);
+    }
+
+    public String getMessage(){
+        String result = this.message;
+        this.message = null;
+        return result;
     }
 }

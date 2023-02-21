@@ -3,54 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
-  <link rel="stylesheet" href="/mainmenu.css">
-  <link rel="stylesheet" href="/edit.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/mainmenu.css">
+    <link rel="stylesheet" href="/edit.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="header">
-  <nav>
-    <div class="header_logo">
-      <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
-    </div>
-    <div class="header_menu">
-      <a th:href="@{/main}">Shop</a>
-      <a th:href="@{/about}">About us</a>
-      <a th:href="@{/contact}">Contact</a>
-      <a th:href="@{/login}" th:if="${user == null}">Login</a>
-      <a th:href="@{/cart}">Cart</a>
-      <a th:href="@{/login/out}" th:if="${user != null}">Log out</a>
-      <a th:href="@{/login/edit}" th:if="${user != null}" th:text="${user.name}">Log out</a>
-    </div>
-    <div id="headerBars">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div>
-      <form method="post" action="/main" id="search">
-        <input type="text" placeholder="Search..." name="filter">
-        <input type="submit"value="ok">
-      </form>
-    </div>
-  </nav>
+    <nav>
+        <div class="header_logo">
+            <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
+        </div>
+        <div class="header_menu">
+            <a th:href="@{/main}">Shop</a>
+            <a th:href="@{/about}">About us</a>
+            <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/login}" th:if="${user == null}">Login</a>
+            <a th:href="@{/cart}">Cart</a>
+            <a th:href="@{/login/out}" th:if="${user != null}">Log out</a>
+            <a th:href="@{/login/edit}" th:if="${user != null}" th:text="${user.name}">Log out</a>
+        </div>
+        <div id="headerBars">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div>
+            <form method="post" action="/main" id="search">
+                <input type="text" placeholder="Search..." name="filter">
+                <input type="submit" value="ok">
+            </form>
+        </div>
+    </nav>
 </header>
 <div id="changeData">
-  <form method="post" action="/login/data">
-    <div class="inp"><label>Name: </label><input type="text" th:field="*{user.name}"/></div>
-    <div class="inp"><label>Surname: </label><input type="text" th:field="*{user.surname}"/></div>
-    <div class="inp"><input type="submit" value="Update"></div>
-  </form>
+    <form method="post" action="/login/data">
+        <div class="inp"><label>Name: </label><input type="text" th:field="*{user.name}"/></div>
+        <div class="inp"><label>Surname: </label><input type="text" th:field="*{user.surname}"/></div>
+        <div class="inp"><input type="submit" value="Update"></div>
+    </form>
 </div>
+
 <div id="changePass">
-  <form method="post" action="/login/pass">
-    <div class="inp"><label>Your password:</label><input type="text" th:field="*{passmodel.pass}"/></div>
-    <div class="inp"><label>New password:</label><input type="password" th:field="*{passmodel.newPass}"/></div>
-    <div class="inp"><label>Repeat new password:</label><input type="password" th:field="*{passmodel.repeatedNewPass}"/></div>
-    <div class="inp"><input type="submit" value="Update"></div>
-  </form>
+    <div th:if="${message !=null}" th:text="${message}" id="message"></div>
+    <form method="post" action="/login/pass">
+        <div class="inp"><label>Your password:</label><input type="text" th:field="*{passmodel.pass}"/></div>
+        <div class="inp"><label>New password:</label><input type="password" th:field="*{passmodel.newPass}"/></div>
+        <div class="inp"><label>Repeat new password:</label><input type="password"
+                                                                   th:field="*{passmodel.repeatedNewPass}"/></div>
+        <div class="inp"><input type="submit" value="Update"></div>
+    </form>
 </div>
 
 </body>

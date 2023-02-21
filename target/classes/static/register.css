@@ -1,17 +1,17 @@
-#form-login{
+#registerForm{
 display: block;
 width: 20vw;
-margin: 8rem auto 0 auto;
+margin: 2rem auto 0 auto;
 text-align: center;
 color:white;
 font-family: 'Gravitas One', cursive;
 }
 
-#form-login .inp{
+#registerForm .inp{
 padding: 1rem;
 
 }
-#form-login input {
+#registerForm input {
 margin-top: 1rem;
 padding: 0.5rem;
 font-size: 1rem;
@@ -20,14 +20,14 @@ border: 1px solid rgb(200, 197, 197);
 border-radius: 10px;
 color: white;
 }
-#form-login input:hover{
+#registerForm input:hover{
 box-shadow: 0 0 10px rgb(200, 197, 197);
 }
-#form-login input[type=submit]{
+#registerForm input[type=submit]{
 color:white;
 margin-top:0;
 }
-#form-login input[type=submit]:hover{
+#registerForm input[type=submit]:hover{
 box-shadow: 0 0 10px rgb(200, 197, 197);
 cursor: pointer;
 }
@@ -35,13 +35,4 @@ cursor: pointer;
 color: white;
 width: 10rem;
 margin: 0 auto;
-}
-#registerLink{
-color: white;
-text-align: center;
-}
-#regBox{
-text-align: center;
-margin: 0 auto;
-max-width: 5rem;
 }

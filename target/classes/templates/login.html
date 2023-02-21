@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel= "stylesheet" type="text/css" href="/mainmenu.css" media="all">
-    <link rel= "stylesheet" type="text/css" href="/login.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/mainmenu.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/login.css" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
@@ -29,12 +29,18 @@
         </div>
     </nav>
 </header>
+
 <div id="form-login">
-<form method="post">
-    <div class="inp"><label>User name: </label><input type="text" th:field="*{user.login}"/></div>
-    <div class="inp"><label>Password: </label><input type="password" th:field="*{user.password}"/></div>
-    <div class="inp"><input type="submit" value="Sign in"></div>
-</form>
+    <div th:if="${message !=null}" th:text="${message}" id="message"></div>
+    <form method="post">
+        <div class="inp"><label>User name: </label><input type="text" th:field="*{user.login}"/></div>
+        <div class="inp"><label>Password: </label><input type="password" th:field="*{user.password}"/></div>
+        <div class="inp"><input type="submit" value="Sign in"></div>
+    </form>
+</div>
+
+<div id="regBox">
+    <a th:href="@{/register}" id="registerLink">Sign up</a>
 </div>
 </body>
 </html>

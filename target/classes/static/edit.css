@@ -63,3 +63,8 @@ margin-top:0;
 box-shadow: 0 0 10px rgb(200, 197, 197);
 cursor: pointer;
 }
+#message{
+color: white;
+width: 10rem;
+margin: 0 auto;
+}

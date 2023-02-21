@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit</title>
-    <link rel="stylesheet" href="/mainmenu.css">
-    <link rel="stylesheet" href="/edit.css">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="mainmenu.css">
+    <link rel="stylesheet" href="register.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
@@ -37,24 +37,15 @@
         </div>
     </nav>
 </header>
-<div id="changeData">
-    <form method="post" action="/login/data">
-        <div class="inp"><label>Name: </label><input type="text" th:field="*{user.name}"/></div>
-        <div class="inp"><label>Surname: </label><input type="text" th:field="*{user.surname}"/></div>
-        <div class="inp"><input type="submit" value="Update"></div>
-    </form>
-</div>
-
-<div id="changePass">
+<form method="post" id="registerForm">
     <div th:if="${message !=null}" th:text="${message}" id="message"></div>
-    <form method="post" action="/login/pass">
-        <div class="inp"><label>Your password:</label><input type="text" th:field="*{passmodel.pass}"/></div>
-        <div class="inp"><label>New password:</label><input type="password" th:field="*{passmodel.newPass}"/></div>
-        <div class="inp"><label>Repeat new password:</label><input type="password"
-                                                                   th:field="*{passmodel.repeatedNewPass}"/></div>
-        <div class="inp"><input type="submit" value="Update"></div>
-    </form>
-</div>
+    <div class="inp"><label>Name: </label><input type="text" th:field="*{registermodel.name}"/></div>
+    <div class="inp"><label>Surname: </label><input type="text" th:field="*{registermodel.surname}"/></div>
+    <div class="inp"><label>Login: </label><input type="text" th:field="*{registermodel.login}"/></div>
+    <div class="inp"><label>Password: </label><input type="text" th:field="*{registermodel.password}"/></div>
+    <div class="inp"><label>Repeated password: </label><input type="text" th:field="*{registermodel.repeatedPass}"/></div>
+    <div class="inp"><input type="submit" value="Sign up"></div>
 
+</form>
 </body>
 </html>

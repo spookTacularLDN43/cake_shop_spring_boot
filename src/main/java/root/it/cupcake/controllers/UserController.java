@@ -26,6 +26,10 @@ public class UserController {
     @GetMapping
     public String loginForm(Model model) {
         model.addAttribute("user", new User());
+        String message = this.sessionObject.getMessage();
+        if (message != null) {
+            model.addAttribute("message", message);
+        }
         return "login";
     }
 
@@ -35,6 +39,7 @@ public class UserController {
         if (this.sessionObject.getUser() != null) {
             return "redirect:/main";
         } else {
+            this.sessionObject.setMessage("Invalid credentials");
             return "redirect:/login";
         }
     }
@@ -50,6 +55,10 @@ public class UserController {
         if (this.sessionObject.isLogged()) {
             model.addAttribute("user", this.sessionObject.getUser());
             model.addAttribute("passmodel", new ChangePassData());
+            String message = this.sessionObject.getMessage();
+            if (message != null) {
+                model.addAttribute("message", message);
+            }
             return "edit";
         }
         return "redirect:/login";
@@ -64,16 +73,18 @@ public class UserController {
     }
 
     @PostMapping("/pass")
-    public String editPass(@ModelAttribute ChangePassData changePassData) {
-        if (changePassData.getNewPass().equals(changePassData.getRepeatedNewPass())) {
-            //TODO zle powtorzone haslo
+    public String editPass(@ModelAttribute ChangePassData changePassData, Model model) {
+        if (!changePassData.getNewPass().equals(changePassData.getRepeatedNewPass())) {
+            this.sessionObject.setMessage("Passwords are different");
+            return "redirect:/login/edit";
         }
         User user = new User();
         user.setPassword(changePassData.getPass());
         user.setLogin(this.sessionObject.getUser().getLogin());
         User authenticatedUser = this.userRepository.authenticate(user);
         if (authenticatedUser == null) {
-            //TODO zle haslo
+            this.sessionObject.setMessage("Invalid password");
+            return "redirect:/login/edit";
         }
         user.setPassword(changePassData.getNewPass());
         User updatedUser = this.userRepository.updateUserPass(user);
