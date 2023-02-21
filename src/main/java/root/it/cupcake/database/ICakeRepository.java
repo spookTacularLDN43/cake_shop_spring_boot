@@ -7,4 +7,5 @@ import java.util.List;
 public interface ICakeRepository {
     List<Cake> getAllCakes();
     List<Cake> getFilteredCakes(String filter);
+    Cake getCakeByName(String name);
 }

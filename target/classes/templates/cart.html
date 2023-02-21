@@ -2,10 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
-    <link rel= "stylesheet" type="text/css" href="/main.css" media="all">
-    <link rel= "stylesheet" type="text/css" href="/mainmenu.css" media="all">
+    <title>Cart</title>
+    <link rel="stylesheet" type="text/css" href="/cart.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/mainmenu.css" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
@@ -20,8 +19,6 @@
             <a th:href="@{/main}">Shop</a>
             <a th:href="@{/about}">About us</a>
             <a th:href="@{/contact}">Contact</a>
-            <a th:href="@{/login}" th:if="${user == null}">Login</a>
-            <a th:href="@{/cart}">Cart</a>
             <a th:href="@{/login/out}" th:if="${user != null}">Log out</a>
             <a th:href="@{/login/edit}" th:if="${user != null}" th:text="${user.name}"></a>
         </div>
@@ -33,13 +30,11 @@
         <div>
             <form method="post" action="/main" id="search">
                 <input type="text" placeholder="Search..." name="filter">
-                <input type="submit"value="ok">
+                <input type="submit" value="ok">
             </form>
         </div>
-
     </nav>
 </header>
-
 <section>
     <div id="section">
         <th:block th:each="cake:${cakes}">
@@ -47,13 +42,9 @@
                 <h2 class="title">
                     <p th:text="${cake.name}"></p>
                 </h2>
-                <div class="img_container">
-                <img class="cake_img" th:src="${cake.link}">
-                </div>
                 <div class="info">
                     <p th:text="'Available '+${cake.pieces}+' pcs'"></p>
                     <p th:text="${cake.price} + ' $'"></p>
-                    <a th:href="@{/cart/{name}(name=${cake.name})}">Add to cart</a>
                 </div>
             </div>
         </th:block>

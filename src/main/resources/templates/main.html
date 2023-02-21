@@ -53,6 +53,7 @@
                 <div class="info">
                     <p th:text="'Available '+${cake.pieces}+' pcs'"></p>
                     <p th:text="${cake.price} + ' $'"></p>
+                    <a th:href="@{/cart/{name}(name=${cake.name})}">Add to cart</a>
                 </div>
             </div>
         </th:block>

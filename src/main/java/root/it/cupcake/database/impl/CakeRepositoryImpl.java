@@ -1,4 +1,5 @@
 package root.it.cupcake.database.impl;
+
 import org.springframework.stereotype.Component;
 import root.it.cupcake.database.ICakeRepository;
 import root.it.cupcake.model.Cake;
@@ -17,8 +18,8 @@ public class CakeRepositoryImpl implements ICakeRepository {
         cakeList.add(new Cake("Vanilla cupcake", "vanilla", 10, Cake.Type.MUFFIN, 30, "/baked-goods-g0eb66d1cb_1920.jpg"));
         cakeList.add(new Cake("Chocolate ice-cream", "chocolate", 12, Cake.Type.ICE_CREAM, 20, "/dessert-g815a4a021_1920.jpg"));
         cakeList.add(new Cake("Cheesecake", "cheese", 15, Cake.Type.CAKE, 30, "/baked-goods-gc2b7d7cdf_1920.jpg"));
-        cakeList.add(new Cake("Red Velvet cake", "cocoa", 17, Cake.Type.CAKE,20, "/red-velvet-cake-gdcc1cc2b1_1920.jpg"));
-        cakeList.add(new Cake("Strawberry muffin", "strawberry", 8, Cake.Type.MUFFIN,30, "/cakes-g2363673ee_1920.jpg"));
+        cakeList.add(new Cake("Red Velvet cake", "cocoa", 17, Cake.Type.CAKE, 20, "/red-velvet-cake-gdcc1cc2b1_1920.jpg"));
+        cakeList.add(new Cake("Strawberry muffin", "strawberry", 8, Cake.Type.MUFFIN, 30, "/cakes-g2363673ee_1920.jpg"));
     }
 
     @Override
@@ -29,11 +30,21 @@ public class CakeRepositoryImpl implements ICakeRepository {
     @Override
     public List<Cake> getFilteredCakes(String filter) {
         List<Cake> filteredCakes = new ArrayList<>();
-        for (Cake currentCake:this.cakeList) {
-            if(currentCake.getName().toLowerCase().contains(filter.toLowerCase())){
+        for (Cake currentCake : this.cakeList) {
+            if (currentCake.getName().toLowerCase().contains(filter.toLowerCase())) {
                 filteredCakes.add(currentCake);
             }
         }
         return filteredCakes;
+    }
+
+    @Override
+    public Cake getCakeByName(String name) {
+        for (Cake cakeFromDB : this.cakeList) {
+            if (cakeFromDB.getName().equals(name)){
+                return cakeFromDB;
+            }
+        }
+        return null;
     }
 }
