@@ -65,4 +65,12 @@ margin: 0 auto;
 width: 20rem;
 height: 10rem;
 }
+.addCart{
+text-decoration: none;
+color: white;
+}
+.addCart:hover{
+text-shadow: 0 0 3px rgb(200, 197, 197);
+
+}
 }

@@ -37,17 +37,26 @@
 </header>
 <section>
     <div id="section">
+        <div class="labels">
+            <p>Name</p>
+            <p>Pieces</p>
+            <p>Price per pc</p>
+            <p>Price</p>
+        </div>
         <th:block th:each="cake:${cakes}">
-            <div class="item">
-                <h2 class="title">
-                    <p th:text="${cake.name}"></p>
-                </h2>
-                <div class="info">
-                    <p th:text="'Available '+${cake.pieces}+' pcs'"></p>
-                    <p th:text="${cake.price} + ' $'"></p>
-                </div>
+            <div class="labels">
+                <p th:text="${cake.name}"></p>
+                <p th:text="${cake.pieces}+' pcs'"></p>
+                <p th:text="${cake.price} + ' $'"></p>
+                <p th:text="${cake.price*cake.pieces} + ' $'"></p>
             </div>
-        </th:block>
+    </th:block>
+        <div class="labels">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p th:text="'Total: ' +${bill} + ' $'" ></p>
+        </div>
     </div>
 </section>
 </body>

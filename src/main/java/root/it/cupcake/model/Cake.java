@@ -24,4 +24,9 @@ public class Cake {
         ICE_CREAM,
         PANCAKES
     }
+
+    @Override
+    public Object clone() {
+        return new Cake(this.name, this.flavor, this.price, this.type, this.pieces, this.link);
+    }
 }

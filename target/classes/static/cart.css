@@ -1,7 +1,21 @@
 #section{
 color:white;
 text-align: center;
+font-size: 1rem;
 }
 #section .item{
 margin-top: 1rem;
+}
+.labels{
+background: rgba( 0, 0, 0, 0.7);
+height: 7rem;
+margin: 0 auto;
+width: 80%;
+display: grid;
+grid-template-columns: 8vw auto auto auto;
+}
+.labels p{
+display: flex;
+justify-content: center;
+align-items: center;
 }

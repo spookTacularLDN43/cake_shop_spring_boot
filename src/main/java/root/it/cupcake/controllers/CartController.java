@@ -23,7 +23,14 @@ public class CartController {
     @GetMapping("/{name}")
     public String addToCart(@PathVariable String name) {
         if (this.sessionObject.isLogged()) {
-            Cake cake = this.cakeRepository.getCakeByName(name);
+            for (Cake cakeFromCart:this.sessionObject.getCart()) {
+                if(cakeFromCart.getName().equals(name)){
+                    cakeFromCart.setPieces(cakeFromCart.getPieces()+1);
+                    return "redirect:/main";
+                }
+            }
+            Cake cake = (Cake) this.cakeRepository.getCakeByName(name).clone();
+            cake.setPieces(1);
             this.sessionObject.getCart().add(cake);
             return "redirect:/main";
         } else {
@@ -36,6 +43,11 @@ public class CartController {
         if (this.sessionObject.isLogged()) {
             model.addAttribute("cakes", this.sessionObject.getCart());
             model.addAttribute("user", this.sessionObject.getUser());
+            double bill = 0;
+            for(Cake cake:this.sessionObject.getCart()){
+                bill = bill + cake.getPrice()*cake.getPieces();
+            }
+            model.addAttribute("bill", bill);
             return "cart";
         } else {
             return "redirect:/login";
