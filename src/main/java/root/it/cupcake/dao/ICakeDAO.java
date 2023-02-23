@@ -9,6 +9,8 @@ public interface ICakeDAO {
 
     Cake getCakeById(int id);
 
+    void addCake(Cake cake);
+
     //Cake getCakeByName(String name);
 
 }

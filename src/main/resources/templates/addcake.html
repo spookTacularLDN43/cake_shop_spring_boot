@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Addition of products - test GUI</title>
+</head>
+<body>
+<form method="post" id="addForm">
+    <div class="inp"><label>Id: </label><input type="text" th:field="*{addproduct.id}"/></div>
+    <div class="inp"><label>Name: </label><input type="text" th:field="*{addproduct.name}"/></div>
+    <div class="inp"><label>Flavor: </label><input type="text" th:field="*{addproduct.flavor}"/></div>
+    <div class="inp"><label>Price: </label><input type="text" th:field="*{addproduct.price}"/></div>
+    <div class="inp"><label>Type: </label><input type="text" th:field="*{addproduct.type}"/></div>
+    <div class="inp"><label>Pieces: </label><input type="text" th:field="*{addproduct.pieces}"/></div>
+    <div class="inp"><label>Link: </label><input type="text" th:field="*{addproduct.link}"/></div>
+    <div class="inp"><input type="submit" value="Add cake!"></div>
+</form>
+</body>
+</html>

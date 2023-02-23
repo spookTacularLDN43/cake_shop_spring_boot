@@ -2,6 +2,7 @@ package root.it.cupcake.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -39,6 +40,22 @@ public class CakeDAOImpl implements ICakeDAO {
         }
         session.close();
         return cake;
+    }
+
+    @Override
+    public void addCake(Cake cake) {
+        Session session = this.sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.save(cake);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null)
+                transaction.rollback();
+        } finally {
+            session.close();
+        }
     }
 
 //    @Override
