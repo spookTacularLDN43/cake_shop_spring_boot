@@ -14,5 +14,6 @@
         <property name="show_sql">true</property>
 
         <mapping class="root.it.cupcake.model.User"/>
+        <mapping class="root.it.cupcake.model.Cake"/>
     </session-factory>
 </hibernate-configuration>

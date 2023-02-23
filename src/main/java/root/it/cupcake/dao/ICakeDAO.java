@@ -9,9 +9,6 @@ public interface ICakeDAO {
 
     Cake getCakeById(int id);
 
-    Cake getCakeByName(String name);
+    //Cake getCakeByName(String name);
 
-    void updateCake(Cake cake);
-
-    void persistCake(Cake cake);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import root.it.cupcake.dao.ICakeDAO;
 import root.it.cupcake.model.Cake;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository
@@ -18,32 +19,36 @@ public class CakeDAOImpl implements ICakeDAO {
 
     @Override
     public List<Cake> getAllCakes() {
-
-        return null;
+        Session session = this.sessionFactory.openSession();
+        Query<Cake> query = session.createQuery("FROM root.it.cupcake.model.Cake");
+        List<Cake> cakeList = query.getResultList();
+        session.close();
+        return cakeList;
     }
 
     @Override
     public Cake getCakeById(int id) {
-        return null;
-    }
-
-    @Override
-    public Cake getCakeByName(String name) {
         Session session = this.sessionFactory.openSession();
-        Query<Cake> query = session.createQuery("FROM root.it.cupcake.model.Cake WHERE name= :name");
-        query.setParameter("name", name);
-        Cake cake = query.getSingleResult();
+        Query<Cake> query = session.createQuery("FROM root.it.cupcake.model.Cake WHERE id= :id");
+        query.setParameter("id", id);
+        Cake cake = null;
+        try {
+            cake = query.getSingleResult();
+        } catch (NoResultException e){
+            System.out.println("Cake not found");
+        }
         session.close();
         return cake;
     }
 
-    @Override
-    public void updateCake(Cake cake) {
+//    @Override
+//    public Cake getCakeByName(String name) {
+//        Session session = this.sessionFactory.openSession();
+//        Query<Cake> query = session.createQuery("FROM root.it.cupcake.model.Cake WHERE name= :name");
+//        query.setParameter("name", name);
+//        Cake cake = query.getSingleResult();
+//        session.close();
+//        return cake;
+//    }
 
-    }
-
-    @Override
-    public void persistCake(Cake cake) {
-
-    }
 }

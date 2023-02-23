@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import root.it.cupcake.databaseLists.IUserRepository;
 import root.it.cupcake.model.User;
 import root.it.cupcake.model.view.ChangePassData;
 import root.it.cupcake.services.IUserService;
