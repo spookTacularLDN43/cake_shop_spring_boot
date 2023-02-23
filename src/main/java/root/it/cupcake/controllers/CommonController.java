@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import root.it.cupcake.database.ICakeRepository;
+import root.it.cupcake.dao.ICakeDAO;
 import root.it.cupcake.model.Cake;
+import root.it.cupcake.services.ICakeService;
 import root.it.cupcake.session.SessionObject;
 
 import java.util.List;
@@ -16,14 +17,14 @@ import java.util.List;
 public class CommonController {
 
     @Autowired
-    ICakeRepository cakeRepository;
+    ICakeService cakeService;
 
     @Resource
     SessionObject sessionObject;
 
     @GetMapping
     public String main(Model model) {
-        List<Cake> cakeList = this.cakeRepository.getAllCakes();
+        List<Cake> cakeList = this.cakeService.getAllCakes();
         model.addAttribute("cakes", cakeList);
         model.addAttribute("user", this.sessionObject.getUser());
         return "main";
@@ -31,7 +32,7 @@ public class CommonController {
 
     @PostMapping
     public String filter(@RequestParam String filter, Model model) {
-        List<Cake> cakeList = this.cakeRepository.getFilteredCakes(filter);
+        List<Cake> cakeList = this.cakeService.getFilteredCakes(filter);
         model.addAttribute("cakes", cakeList);
         model.addAttribute("user", this.sessionObject.getUser());
         return "main";

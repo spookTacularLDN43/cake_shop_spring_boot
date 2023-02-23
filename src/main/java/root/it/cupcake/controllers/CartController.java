@@ -7,8 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import root.it.cupcake.database.ICakeRepository;
-import root.it.cupcake.model.Cake;
+import root.it.cupcake.services.ICartService;
 import root.it.cupcake.session.SessionObject;
 
 @Controller
@@ -16,41 +15,21 @@ import root.it.cupcake.session.SessionObject;
 public class CartController {
 
     @Autowired
-    ICakeRepository cakeRepository;
+    ICartService cartService;
     @Resource
     SessionObject sessionObject;
 
-    @GetMapping("/{name}")
-    public String addToCart(@PathVariable String name) {
-        if (this.sessionObject.isLogged()) {
-            for (Cake cakeFromCart:this.sessionObject.getCart()) {
-                if(cakeFromCart.getName().equals(name)){
-                    cakeFromCart.setPieces(cakeFromCart.getPieces()+1);
-                    return "redirect:/main";
-                }
-            }
-            Cake cake = (Cake) this.cakeRepository.getCakeByName(name).clone();
-            cake.setPieces(1);
-            this.sessionObject.getCart().add(cake);
-            return "redirect:/main";
-        } else {
-            return "redirect:/login";
-        }
+    @GetMapping("/{id}")
+    public String addToCart(@PathVariable int id) {
+        this.cartService.addToBasket(id);
+        return "redirect:/main";
     }
 
     @GetMapping
     public String showCart(Model model) {
-        if (this.sessionObject.isLogged()) {
-            model.addAttribute("cakes", this.sessionObject.getCart());
-            model.addAttribute("user", this.sessionObject.getUser());
-            double bill = 0;
-            for(Cake cake:this.sessionObject.getCart()){
-                bill = bill + cake.getPrice()*cake.getPieces();
-            }
-            model.addAttribute("bill", bill);
-            return "cart";
-        } else {
-            return "redirect:/login";
-        }
+        model.addAttribute("cakes", this.sessionObject.getCart());
+        model.addAttribute("user", this.sessionObject.getUser());
+        model.addAttribute("bill", this.cartService.calculateBill());
+        return "cart";
     }
 }

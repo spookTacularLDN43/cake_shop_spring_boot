@@ -1,4 +1,4 @@
-package root.it.cupcake.database;
+package root.it.cupcake.databaseLists;
 
 import root.it.cupcake.model.User;
 

@@ -1,11 +1,11 @@
-package root.it.cupcake.database;
+package root.it.cupcake.services;
 
 import root.it.cupcake.model.Cake;
 
 import java.util.List;
 
-public interface ICakeRepository {
+public interface ICakeService {
     List<Cake> getAllCakes();
+
     List<Cake> getFilteredCakes(String filter);
-    Cake getCakeByName(String name);
 }

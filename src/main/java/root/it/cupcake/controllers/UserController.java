@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import root.it.cupcake.database.IUserRepository;
+import root.it.cupcake.databaseLists.IUserRepository;
 import root.it.cupcake.model.User;
 import root.it.cupcake.model.view.ChangePassData;
+import root.it.cupcake.services.IUserService;
 import root.it.cupcake.session.SessionObject;
 
 @Controller
@@ -18,7 +19,7 @@ import root.it.cupcake.session.SessionObject;
 public class UserController {
 
     @Autowired
-    IUserRepository userRepository;
+    IUserService userService;
 
     @Resource
     SessionObject sessionObject;
@@ -26,16 +27,13 @@ public class UserController {
     @GetMapping
     public String loginForm(Model model) {
         model.addAttribute("user", new User());
-        String message = this.sessionObject.getMessage();
-        if (message != null) {
-            model.addAttribute("message", message);
-        }
+        model.addAttribute("message", this.sessionObject.getMessage());
         return "login";
     }
 
     @PostMapping
     public String authentication(@ModelAttribute User user) {
-        this.sessionObject.setUser(userRepository.authenticate(user));
+        this.sessionObject.setUser(this.userService.authenticate(user));
         if (this.sessionObject.getUser() != null) {
             return "redirect:/main";
         } else {
@@ -55,10 +53,7 @@ public class UserController {
         if (this.sessionObject.isLogged()) {
             model.addAttribute("user", this.sessionObject.getUser());
             model.addAttribute("passmodel", new ChangePassData());
-            String message = this.sessionObject.getMessage();
-            if (message != null) {
-                model.addAttribute("message", message);
-            }
+            model.addAttribute("message", this.sessionObject.getMessage());
             return "edit";
         }
         return "redirect:/login";
@@ -67,7 +62,7 @@ public class UserController {
     @PostMapping("/data")
     public String editData(@ModelAttribute User user) {
         user.setLogin(this.sessionObject.getUser().getLogin());
-        User updatedUser = this.userRepository.updateUserData(user);
+        User updatedUser = this.userService.updateUserData(user);
         this.sessionObject.setUser(updatedUser);
         return "redirect:/login/edit";
     }
@@ -81,14 +76,18 @@ public class UserController {
         User user = new User();
         user.setPassword(changePassData.getPass());
         user.setLogin(this.sessionObject.getUser().getLogin());
-        User authenticatedUser = this.userRepository.authenticate(user);
+        User authenticatedUser = this.userService.authenticate(user);
         if (authenticatedUser == null) {
             this.sessionObject.setMessage("Invalid password");
             return "redirect:/login/edit";
         }
-        user.setPassword(changePassData.getNewPass());
-        User updatedUser = this.userRepository.updateUserPass(user);
-        this.sessionObject.setUser(updatedUser);
+        User result = this.userService.updateUserPass(changePassData);
+        if (result != null) {
+            this.sessionObject.setUser(result);
+        } else {
+            this.sessionObject.setMessage("Zmiana hasła nieudana !!");
+        }
+
         return "redirect:/login/edit";
     }
 }

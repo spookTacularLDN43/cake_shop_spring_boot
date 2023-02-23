@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import root.it.cupcake.database.IUserRepository;
-import root.it.cupcake.model.User;
 import root.it.cupcake.model.view.UserRegistrationData;
+import root.it.cupcake.services.IUserService;
 import root.it.cupcake.session.SessionObject;
 
 @Controller
@@ -18,7 +17,7 @@ import root.it.cupcake.session.SessionObject;
 public class RegisterController {
 
     @Autowired
-    IUserRepository userRepository;
+    IUserService userService;
     @Resource
     SessionObject sessionObject;
 
@@ -35,13 +34,13 @@ public class RegisterController {
             this.sessionObject.setMessage("Passwords are different");
             return "redirect:/register";
         }
-        boolean checkResult = this.userRepository.checkIfLoginExists(userRegistrationData.getLogin());
-        if (checkResult) {
+        boolean checkResult = this.userService.registerUser(userRegistrationData);
+
+        if (!checkResult) {
             this.sessionObject.setMessage("Login is taken");
             return "redirect:/register";
         }
-        User user = new User(userRegistrationData.getName(), userRegistrationData.getSurname(), userRegistrationData.getLogin(), userRegistrationData.getPassword());
-        this.userRepository.addUser(user);
+
         this.sessionObject.setMessage("Signed up!");
         return "redirect:/login";
     }

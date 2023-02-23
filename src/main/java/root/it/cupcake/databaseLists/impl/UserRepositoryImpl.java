@@ -1,13 +1,13 @@
-package root.it.cupcake.database.impl;
+package root.it.cupcake.databaseLists.impl;
 
 import org.springframework.stereotype.Component;
-import root.it.cupcake.database.IUserRepository;
+import root.it.cupcake.databaseLists.IUserRepository;
 import root.it.cupcake.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+
 public class UserRepositoryImpl implements IUserRepository {
 
     private final List<User> userList = new ArrayList<>();

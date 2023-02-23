@@ -5,14 +5,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity(name = "tcake")
 public class Cake {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
     private String flavor;
     private int price;
+    @Enumerated(EnumType.STRING)
     private Type type;
     private int pieces;
     private String link;
@@ -25,8 +32,8 @@ public class Cake {
         PANCAKES
     }
 
-    @Override
-    public Object clone() {
-        return new Cake(this.name, this.flavor, this.price, this.type, this.pieces, this.link);
-    }
+//    @Override
+//    public Object clone() {
+//        return new Cake(this.id, this.name, this.flavor, this.price, this.type, this.pieces, this.link);
+//    }
 }
