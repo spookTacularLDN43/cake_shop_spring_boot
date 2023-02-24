@@ -1,6 +1,7 @@
 package root.it.cupcake.services.impl;
 
 import jakarta.annotation.Resource;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import root.it.cupcake.dao.IUserDAO;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements IUserService {
         user.setName(userRegistrationData.getName());
         user.setSurname(userRegistrationData.getSurname());
         user.setLogin(userRegistrationData.getLogin());
-        user.setPassword(userRegistrationData.getPassword());
+        user.setPassword(DigestUtils.md5Hex(userRegistrationData.getPassword()));
         this.userDAO.persistUser(user);
         return true;
     }
@@ -36,7 +37,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User authenticate(User user) {
         User userFormDatabase = this.userDAO.getUserByLogin(user.getLogin());
-        if (userFormDatabase != null && userFormDatabase.getPassword().equals(user.getPassword())) {
+        if (userFormDatabase != null && userFormDatabase.getPassword().equals(DigestUtils.md5Hex(user.getPassword()))) {
             return userFormDatabase;
         }
         return null;

@@ -42,6 +42,7 @@
             <p>Pieces</p>
             <p>Price per pc</p>
             <p>Price</p>
+            <p></p>
         </div>
         <th:block th:each="cake:${cakes}">
             <div class="labels">
@@ -49,6 +50,7 @@
                 <p th:text="${cake.pieces}+' pcs'"></p>
                 <p th:text="${cake.price} + ' $'"></p>
                 <p th:text="${cake.price*cake.pieces} + ' $'"></p>
+                <a th:href="@{/cart/delete/{id}(id=${cake.id})}">Delete</a>
             </div>
     </th:block>
         <div class="labels">
@@ -56,7 +58,11 @@
             <p></p>
             <p></p>
             <p th:text="'Total: ' +${bill} + ' $'" ></p>
+            <p></p>
         </div>
+    </div>
+    <div id="order">
+        <button th:if="${not #lists.isEmpty(cakes)}" id="btn"><a th:href="@{/order}">Order</a></button>
     </div>
 </section>
 </body>

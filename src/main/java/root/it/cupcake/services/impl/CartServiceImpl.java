@@ -38,4 +38,14 @@ public class CartServiceImpl implements ICartService {
         }
         return bill;
     }
+
+    @Override
+    public void removeFromCart(int id) {
+        for (Cake cake : this.sessionObject.getCart()) {
+            if (cake.getId() == id) {
+                this.sessionObject.getCart().remove(cake);
+                break;
+            }
+        }
+    }
 }

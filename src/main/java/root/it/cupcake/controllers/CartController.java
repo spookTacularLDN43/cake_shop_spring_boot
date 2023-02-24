@@ -21,15 +21,29 @@ public class CartController {
 
     @GetMapping("/{id}")
     public String addToCart(@PathVariable int id) {
-        this.cartService.addToBasket(id);
-        return "redirect:/main";
+        if (this.sessionObject.isLogged()) {
+            this.cartService.addToBasket(id);
+            return "redirect:/main";
+        } else {
+            return "redirect:/login";
+        }
     }
 
     @GetMapping
     public String showCart(Model model) {
-        model.addAttribute("cakes", this.sessionObject.getCart());
-        model.addAttribute("user", this.sessionObject.getUser());
-        model.addAttribute("bill", this.cartService.calculateBill());
-        return "cart";
+        if (this.sessionObject.isLogged()) {
+            model.addAttribute("cakes", this.sessionObject.getCart());
+            model.addAttribute("user", this.sessionObject.getUser());
+            model.addAttribute("bill", this.cartService.calculateBill());
+            return "cart";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @GetMapping("/delete/{id}")
+    public String removeFromCart(@PathVariable int id) {
+        this.cartService.removeFromCart(id);
+        return "redirect:/cart";
     }
 }

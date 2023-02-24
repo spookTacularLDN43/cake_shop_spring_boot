@@ -12,10 +12,35 @@ height: 7rem;
 margin: 0 auto;
 width: 80%;
 display: grid;
-grid-template-columns: 8vw auto auto auto;
+grid-template-columns: 8vw auto auto auto 4vw;
 }
 .labels p{
 display: flex;
 justify-content: center;
 align-items: center;
 }
+.labels a{
+display: flex;
+justify-content: center;
+align-items: center;
+color:white;
+text-decoration: none;
+}
+#order{
+margin: 4rem auto;
+width: 70%;
+display: flex;
+justify-content: flex-end;
+}
+#btn{
+padding: 0.4rem;
+background: rgba( 0, 0, 0, 0.7);
+border: none;
+border-radius: 10px;
+}
+#btn a{
+color:white;
+text-decoration: none;
+font-size: 1rem;
+}
+
