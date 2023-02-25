@@ -58,14 +58,19 @@ public class CakeDAOImpl implements ICakeDAO {
         }
     }
 
-//    @Override
-//    public Cake getCakeByName(String name) {
-//        Session session = this.sessionFactory.openSession();
-//        Query<Cake> query = session.createQuery("FROM root.it.cupcake.model.Cake WHERE name= :name");
-//        query.setParameter("name", name);
-//        Cake cake = query.getSingleResult();
-//        session.close();
-//        return cake;
-//    }
-
+    @Override
+    public void updateCake(Cake cake) {
+        Session session = this.sessionFactory.openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.update(cake);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null)
+                transaction.rollback();
+        } finally {
+            session.close();
+        }
+    }
 }

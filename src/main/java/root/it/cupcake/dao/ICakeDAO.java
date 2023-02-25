@@ -11,6 +11,6 @@ public interface ICakeDAO {
 
     void addCake(Cake cake);
 
-    //Cake getCakeByName(String name);
+    void updateCake(Cake cake);
 
 }

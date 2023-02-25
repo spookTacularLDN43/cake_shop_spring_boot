@@ -26,6 +26,7 @@ public class CommonController {
         List<Cake> cakeList = this.cakeService.getAllCakes();
         model.addAttribute("cakes", cakeList);
         model.addAttribute("user", this.sessionObject.getUser());
+        model.addAttribute("cart", this.sessionObject.getCart());
         return "main";
     }
 
