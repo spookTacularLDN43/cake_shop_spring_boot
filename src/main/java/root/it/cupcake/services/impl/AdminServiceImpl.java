@@ -14,6 +14,6 @@ public class AdminServiceImpl implements IAdminService {
 
     @Override
     public void addCake(Cake cake) {
-    this.cakeDAO.addCake(cake);
+    this.cakeDAO.updateCake(cake);
     }
 }

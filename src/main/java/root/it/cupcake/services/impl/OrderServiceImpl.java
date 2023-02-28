@@ -2,7 +2,6 @@ package root.it.cupcake.services.impl;
 
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import root.it.cupcake.dao.ICakeDAO;
 import root.it.cupcake.dao.IOrderDAO;
@@ -15,7 +14,7 @@ import root.it.cupcake.session.SessionObject;
 import java.util.List;
 
 @Service
-public class OrderService implements IOrderService {
+public class OrderServiceImpl implements IOrderService {
 
     @Resource
     SessionObject sessionObject;
@@ -27,6 +26,12 @@ public class OrderService implements IOrderService {
     @Override
     public void confirmOrder() {
         List<Cake> orderedCakes = this.sessionObject.getCart();
+        for (Cake cake:orderedCakes){
+            Cake cakeFromDB = this.cakeDAO.getCakeById(cake.getId());
+            if(cakeFromDB.getPieces()<cake.getPieces()){
+                return;
+            }
+        }
         Order order = new Order();
         order.setUser(this.sessionObject.getUser());
 
@@ -54,4 +59,10 @@ public class OrderService implements IOrderService {
         }
         this.sessionObject.getCart().clear();
     }
+
+    @Override
+    public List<Order> getOrders() {
+        return this.orderDAO.getCurrentUserOrders(this.sessionObject.getUser().getId());
+    }
+
 }

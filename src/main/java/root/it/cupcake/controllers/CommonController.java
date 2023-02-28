@@ -24,9 +24,15 @@ public class CommonController {
     @GetMapping
     public String main(Model model) {
         List<Cake> cakeList = this.cakeService.getAllCakes();
+        for (Cake cake : cakeList) {
+            for (Cake cakeFromCart : this.sessionObject.getCart()) {
+                if (cake.getId() == cakeFromCart.getId()) {
+                    cake.setPieces(cake.getPieces() - cakeFromCart.getPieces());
+                }
+            }
+        }
         model.addAttribute("cakes", cakeList);
         model.addAttribute("user", this.sessionObject.getUser());
-        model.addAttribute("cart", this.sessionObject.getCart());
         return "main";
     }
 

@@ -19,6 +19,7 @@
             <a th:href="@{/main}">Shop</a>
             <a th:href="@{/about}">About us</a>
             <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/login}" th:if="${user == null}">Login</a>
             <a th:href="@{/login/out}" th:if="${user != null}">Log out</a>
             <a th:href="@{/login/edit}" th:if="${user != null}" th:text="${user.name}"></a>
         </div>

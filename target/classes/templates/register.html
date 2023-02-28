@@ -22,7 +22,7 @@
             <a th:href="@{/login}" th:if="${user == null}">Login</a>
             <a th:href="@{/cart}">Cart</a>
             <a th:href="@{/login/out}" th:if="${user != null}">Log out</a>
-            <a th:href="@{/login/edit}" th:if="${user != null}" th:text="${user.name}">Log out</a>
+            <a th:href="@{/login/edit}" th:if="${user != null}" th:text="${user.name}"></a>
         </div>
         <div id="headerBars">
             <span></span>

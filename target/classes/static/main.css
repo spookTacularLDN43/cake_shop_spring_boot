@@ -69,8 +69,13 @@ height: 10rem;
 text-decoration: none;
 color: white;
 }
+.disabled{
+text-decoration: none;
+color: white;
+pointer-events: none;
+opacity: 0.5;
+}
 .addCart:hover{
 text-shadow: 0 0 3px rgb(200, 197, 197);
-
 }
 }

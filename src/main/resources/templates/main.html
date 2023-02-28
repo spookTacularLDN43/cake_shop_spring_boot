@@ -54,7 +54,8 @@
                 <div class="info" >
                     <p th:text="'Available '+${cake.pieces}+' pcs'"></p>
                     <p th:text="${cake.price} + ' $'"></p>
-                    <a th:href="@{/cart/{id}(id=${cake.id})}" class="addCart">Add to cart</a>
+                    <a th:if="${cake.pieces>0}" th:href="@{/cart/{id}(id=${cake.id})}" class="addCart">Add to cart</a>
+                    <a th:if="${cake.pieces<=0}" th:href="@{/cart/{id}(id=${cake.id})}" class="disabled">Add to cart</a>
                 </div>
             </div>
         </th:block>

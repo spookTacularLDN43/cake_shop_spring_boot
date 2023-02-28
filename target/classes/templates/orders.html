@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My orders</title>
+    <link rel="stylesheet" type="text/css" href="/orders.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/mainmenu.css" media="all">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+    <nav>
+        <div class="header_logo">
+            <img src="/MuffinLogo.png" class="header_logo" alt="muffin logo">
+        </div>
+        <div class="header_menu">
+            <a th:href="@{/main}">Shop</a>
+            <a th:href="@{/about}">About us</a>
+            <a th:href="@{/contact}">Contact</a>
+            <a th:href="@{/cart}">Cart</a>
+            <a th:href="@{/login/out}" th:if="${user != null}">Log out</a>
+            <a th:href="@{/login/edit}" th:if="${user != null}" th:text="${user.name}"></a>
+        </div>
+        <div id="headerBars">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+</header>
+<div id="content">
+    <div id="label">My orders:</div>
+    <th:block th:each="order : ${orders}">
+        <div class="orderBox">
+        <div th:text="'Status: ' + ${order.status}"></div>
+        <div>Cakes:</div>
+        <th:block th:each="position: ${order.positions}">
+            <div class="position">
+                <div th:text="${position.cake.name}"></div>
+                <div th:text="${position.pieces} + ' pieces'"></div>
+                <div th:text="${position.cake.price} + ' $'"></div>
+            </div>
+        </th:block>
+<div th:text="'Sum: '+ ${order.price}+ ' $'"></div>
+</div>
+    </th:block>
+</div>
+</body>
+</html>
