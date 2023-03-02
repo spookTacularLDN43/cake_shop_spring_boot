@@ -20,7 +20,7 @@ public class SessionObject {
     private List<Cake> cart = new ArrayList<>();
 
     public boolean isLogged() {
-        return !(this.user == null);
+        return this.user != null;
     }
 
     public String getMessage() {
