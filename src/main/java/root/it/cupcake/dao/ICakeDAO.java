@@ -13,4 +13,5 @@ public interface ICakeDAO {
 
     void updateCake(Cake cake);
 
+    void deleteCake(Cake cake);
 }

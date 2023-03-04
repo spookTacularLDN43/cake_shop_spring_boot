@@ -8,4 +8,6 @@ public interface ICakeService {
     List<Cake> getAllCakes();
 
     List<Cake> getFilteredCakes(String filter);
+
+    Cake getCakeById(int id);
 }

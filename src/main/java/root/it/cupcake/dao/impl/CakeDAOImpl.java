@@ -73,4 +73,20 @@ public class CakeDAOImpl implements ICakeDAO {
             session.close();
         }
     }
+
+    @Override
+    public void deleteCake(Cake cake) {
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            session.delete(cake);
+            tx.commit();
+        }catch (Exception e){
+            if(tx != null)
+                tx.rollback();
+        }finally {
+            session.close();
+        }
+    }
 }

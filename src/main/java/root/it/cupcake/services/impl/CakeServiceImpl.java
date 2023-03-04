@@ -31,4 +31,9 @@ public class CakeServiceImpl implements ICakeService {
         }
         return filteredCakes;
     }
+
+    @Override
+    public Cake getCakeById(int id) {
+        return this.cakeDAO.getCakeById(id);
+    }
 }
