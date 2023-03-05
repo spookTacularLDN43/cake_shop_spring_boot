@@ -62,7 +62,17 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public List<Order> getOrders() {
-        return this.orderDAO.getCurrentUserOrders(this.sessionObject.getUser().getId());
+        return this.orderDAO.getUserOrders(this.sessionObject.getUser().getId());
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return this.orderDAO.getAllOrders();
+    }
+
+    @Override
+    public List<Order> getOrderForUserById(int id) {
+        return this.orderDAO.getUserOrders(id);
     }
 
 }

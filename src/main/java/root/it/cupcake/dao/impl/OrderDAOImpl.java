@@ -34,10 +34,19 @@ public class OrderDAOImpl implements IOrderDAO {
     }
 
     @Override
-    public List<Order> getCurrentUserOrders(int userId) {
+    public List<Order> getUserOrders(int userId) {
         Session session = this.sessionFactory.openSession();
         Query<Order> query = session.createQuery("FROM root.it.cupcake.model.Order WHERE user_id= :user_id");
         query.setParameter("user_id", userId);
+        List<Order> orders = query.getResultList();
+        session.close();
+        return orders;
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        Session session = this.sessionFactory.openSession();
+        Query<Order> query = session.createQuery("FROM root.it.cupcake.model.Order");
         List<Order> orders = query.getResultList();
         session.close();
         return orders;

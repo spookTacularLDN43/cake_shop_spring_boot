@@ -23,20 +23,21 @@ public class OrderController {
 
     @GetMapping
     public String confirmOrder() {
+        if(this.sessionObject.isLogged()){
             this.orderService.confirmOrder();
             return "redirect:/main";
+        }else {
+            return "redirect:/login";
+        }
     }
 
     @GetMapping("/myorders")
     public String orders(Model model){
-        if (this.sessionObject.isLogged()){
             model.addAttribute("user", this.sessionObject.getUser());
             List<Order> orders = this.orderService.getOrders();
             model.addAttribute("orders", orders);
             return "orders";
         }
-        else {
-            return "redirect:/login";
-        }
+
     }
-}
+

@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface IOrderDAO {
     void persistOrder(Order order);
-    List<Order> getCurrentUserOrders(int userId);
+
+    List<Order> getUserOrders(int userId);
+
+    List<Order> getAllOrders();
 }
